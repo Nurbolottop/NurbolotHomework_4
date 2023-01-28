@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <form action="" method="post">{% csrf_token %}
+    <form action="" method="get">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Обновить пост</button>
 
