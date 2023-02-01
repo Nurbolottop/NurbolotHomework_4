@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404
-from posts.models import Post
+from posts.models import Post,Comment
 from django.views import generic
 from django.urls import reverse_lazy
 import datetime
@@ -11,11 +11,26 @@ class IndexView(generic.ListView):
     extra_context = {"title": "Главная страница"}
     template_name = "index.html"
 
-
+class PostView(generic.ListView):
+    model = Post
+    context_object_name = "posts"
+    template_name = "post.html"
+    
 class POstDetailView(generic.DetailView):
     model = Post
     context_object_name = "posts"   
     template_name = "post_detail.html" 
+    
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        name = request.POST.get("name", None)
+        text = request.POST.get("text", None)
+        
+        if name and text:
+            comment = Comment.objects.create(name =name, text = text, post = post)
+            comment.save()
+        
+        return redirect("post-detail", pk)
 
 
 class PostCreateView(generic.CreateView):
