@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <h6>{{post.created}}</h6> 
+    <hr>
+
+    {% if posts.post_comment.all%}
+        <h3>Комментарии: </h3> 
+        <hr>
+    {% endif %}
+    
+
+
+    {% for comment in post.post_comment.all%}
+
+        <h3>{{comment.name}}</h3> 
+        <p>{{comment.text}}</p>
+        <h6>{{comment.created}}</h6> 
+        <hr>
+        
+    {% endfor %}
+
+    <form action="" method="post">{% csrf_token %}
+        <latel for="name">Введите имя: </label>
+        <input type = "text" name = "name"><br></br>
+        <latel for="name">Введите коментарий: </label>
+
+        <input type = "text" name = "text"><br></br>
+
+        <button type="submit">Оставить коментарий</button>
+    </form>
+
+
+    <form action="{% url 'post-delete' post.id %}" method="get">{% csrf_token %}
+        <button type="submit">Удалить пост</button>
+    </form>
+
+    <form action="{% url 'post-update' post.id %}" method="get">{% csrf_token %}
+        <button type="submit">Редактировать пост</button>
+    </form>
+
+
+
+
+{% endblock %}
