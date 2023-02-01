@@ -2,10 +2,10 @@
 
 {% block content %}
 
-    <form action="" method="get">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Обновить пост</button>
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Обновить пост</button>
 
-    </form>
+</form>
 
 {% endblock %}

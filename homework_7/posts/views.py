@@ -52,8 +52,9 @@ class PostDetailView(generic.DetailView):
 class PostCreateView(generic.CreateView):
     model = Post
     template_name = "post_create.html"
-    fields = ["title", "content"]
     success_url = reverse_lazy("main-page")
+    form_class = PostForm
+    
 
 
 class PostDeleteView(generic.DeleteView):
@@ -64,7 +65,8 @@ class PostDeleteView(generic.DeleteView):
 class PostUpdateView(generic.UpdateView):
     model = Post
     template_name = "post_update.html"
-    extra_context = {"form": PostForm()}
+    success_url = reverse_lazy("main-page")
+    form_class = PostForm
 
 
 # def get_post(request, post_id):
@@ -77,10 +79,8 @@ class PostUpdateView(generic.UpdateView):
 
 class AboutView(generic.TemplateView):
     template_name = "about.html"
-    fields = ["title", "content"]
     success_url = reverse_lazy("about-page")
 
 class ContactView(generic.TemplateView):
     template_name = "contacts.html"
-    fields = ["title", "content"]
     success_url = reverse_lazy("contact-page")

@@ -6,7 +6,7 @@
     <h6>{{post.created}}</h6> 
     <hr>
 
-    {% if posts.post_comment.all%}
+    {% if post.post_comment.all%}
         <h3>Комментарии: </h3> 
         <hr>
     {% endif %}
@@ -33,7 +33,7 @@
     </form>
 
 
-    <form action="{% url 'post-delete' post.id %}" method="get">{% csrf_token %}
+    <form action="{% url 'post-delete' post.id %}" method="post">{% csrf_token %}
         <button type="submit">Удалить пост</button>
     </form>
 
