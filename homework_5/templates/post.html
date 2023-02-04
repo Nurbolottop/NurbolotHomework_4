@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for post in posts %}
+    <hr>
+    <a href="{% url 'post-detail' post.id %}">{{post.title}}</a>
+    <hr>
+{% endfor %}
+
+
+
+
+<form action = "{% url 'post-create' %}" method = "post">{%csrf_token%}
+    {{ form.as_p}}
+    <button type="submit"> Создать пост</button>
+</form>
+
+
+{% endblock %}

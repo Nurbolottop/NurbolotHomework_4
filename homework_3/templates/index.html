@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Hello!</h1>
+
+<ul>
+    {% for elem in my_list %}
+        <li>{{ elem }}</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'about-page' %}">О нас</a>
+<p>
+
+<a href="{% url 'contact-page' %}">Контакты</a>
+
+</p>
+
+{% endblock %}
+
