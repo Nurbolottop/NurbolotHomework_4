@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{ title }}</title>
+</head>
+<body>
+
+{% block content %}
+
+{%  endblock %}
+
+<ul>
+    {% if user.is_authenticated %}
+        <li>Пользователь: {{ user.username }}</li>
+        <li><a href="{% url 'logout' %}">Выйти</a></li>
+    {% else %}
+        <li><a href="{% url 'login' %}">Войти</a></li>
+        <li><a href="{% url 'register' %}">Зарегистрироваться</a></li>
+    {% endif %}
+</ul>
+<a href="{% url 'social:begin' 'google-oauth2' %}">Google</a>
+</body>
+</html>
